@@ -26,6 +26,5 @@ RUN rm -f /var/www/html/index.html /var/www/html/index.nginx-debian.html \
 COPY --chown=root:root ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --chown=root:root ./nginx/laravel-default.conf /etc/nginx/sites-enabled/laravel-default
 COPY --chown=root:root ./start.sh /root/start.sh
-ENTRYPOINT ["/bin/zsh","-c"]
 CMD ["./start.sh"]
 EXPOSE 80
