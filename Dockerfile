@@ -22,7 +22,10 @@ RUN rm -f /var/www/html/index.html /var/www/html/index.nginx-debian.html \
     && ln -sf /dev/stderr /var/log/nginx/error.log \
     && echo "listen.allowed_clients = 127.0.0.1\npm.max_children = 50\npm.start_servers = 5\npm.min_spare_servers = 5\npm.max_spare_servers = 10\nlisten.backlog = -1" >> /etc/php/8.1/fpm/pool.d/www.conf \
     && echo "[php]\nmemory_limit = 1024M" >> /etc/php/8.1/fpm/php.ini \
-    && echo "<?php phpinfo();?>" > /var/www/html/index.php
+    && echo "xdebug.idekey=PHPSTORM" >> /etc/php/8.1/fpm/php.ini \
+    && echo "xdebug.idekey=PHPSTORM" >> /etc/php/8.1/cli/php.ini \
+    && mkdir /var/www/html/public \
+    && echo "<?php phpinfo();?>" > /var/www/html/public/index.php
 COPY --chown=root:root ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --chown=root:root ./nginx/laravel-default.conf /etc/nginx/sites-enabled/laravel-default
 COPY --chown=root:root ./start.sh /root/start.sh
